@@ -17,7 +17,7 @@ namespace GisFramework.CoreServices
 	/// <typeparam name="TMessageDomain">Тип доменного сообщения</typeparam>
 	/// <typeparam name="TMessageProxy">Тип прокси объекта сообщения</typeparam>
 	/// <typeparam name="TAckProxy">Тип прокси объекта ответа</typeparam>
-	public class SendMessageCoreService<TMessageDomain, TMessageProxy, TAckProxy> : ICoreService
+	public class SendMessageCoreService<TMessageDomain, TMessageProxy, TAckProxy>
 		where TMessageDomain : MessageDomain
 		where TAckProxy : IAckRequestAck
 	{
@@ -39,7 +39,7 @@ namespace GisFramework.CoreServices
 			_logger = logger;
 		}
 
-		public void Do(CoreInitData coreInitData)
+		public void SendMessages(CoreInitData coreInitData)
 		{
 			var stopWatch = new Stopwatch();
 			stopWatch.Start();

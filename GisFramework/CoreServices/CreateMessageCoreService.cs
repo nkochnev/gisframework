@@ -12,7 +12,7 @@ namespace GisFramework.CoreServices
 	/// </summary>
 	/// <typeparam name="TMessageDomain">Тип доменного сообщения</typeparam>
 	/// <typeparam name="TSourceDomain">Тип объекта, который возвращается из информационной системы</typeparam>
-	public class CreateMessageCoreService<TMessageDomain, TSourceDomain> : ICoreService
+	public class CreateMessageCoreService<TMessageDomain, TSourceDomain>
 		where TMessageDomain : MessageDomain
 	{
 		private readonly ISourceService<TSourceDomain> _sourceService;
@@ -33,7 +33,7 @@ namespace GisFramework.CoreServices
 			_logger = logger;
 		}
 
-		public void Do(CoreInitData coreInitData)
+		public void CreateMessages(CoreInitData coreInitData)
 		{
 			var stopWatch = new Stopwatch();
 			stopWatch.Start();

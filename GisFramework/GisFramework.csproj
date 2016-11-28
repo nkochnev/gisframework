@@ -65,7 +65,6 @@
     <Compile Include="Interfaces\Providers\IGetResultProxyProvider.cs" />
     <Compile Include="Interfaces\Providers\ISendMessageProxyProvider.cs" />
     <Compile Include="Interfaces\Services\IBusinessService.cs" />
-    <Compile Include="Interfaces\Services\ICoreService.cs" />
     <Compile Include="Interfaces\Services\IGisLogger.cs" />
     <Compile Include="Interfaces\Services\IMessageDomainService.cs" />
     <Compile Include="Interfaces\Services\ISaveResultService.cs" />

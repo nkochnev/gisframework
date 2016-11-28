@@ -18,7 +18,7 @@ namespace GisFramework.CoreServices
 	/// <typeparam name="TGetStateResultProxy">Тип прокси объекта запроса результата обработки</typeparam>
 	/// <typeparam name="TResultProxy">Тип прокси объекта результата обработки сообщения</typeparam>
 	/// <typeparam name="TResult">Тип объекта результата обработки сообщения</typeparam>
-	public class GetResultsCoreService<TMessageDomain, TGetStateResultProxy, TResultProxy, TResult> : ICoreService
+	public class GetResultsCoreService<TMessageDomain, TGetStateResultProxy, TResultProxy, TResult>
 		where TMessageDomain : MessageDomain
 		where TResultProxy : IGetStateResult
 	{
@@ -51,7 +51,7 @@ namespace GisFramework.CoreServices
 			_logger = logger;
 		}
 
-		public void Do(CoreInitData coreInitData)
+		public void GetResults(CoreInitData coreInitData)
 		{
 			var stopWatch = new Stopwatch();
 			stopWatch.Start();
