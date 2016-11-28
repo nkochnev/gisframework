@@ -45,7 +45,7 @@
     <Compile Include="CoreServices\GetResultsCoreService.cs" />
     <Compile Include="CoreServices\SendMessageCoreService.cs" />
     <Compile Include="Data\ErrorMessageType.cs" />
-    <Compile Include="Data\InitData.cs" />
+    <Compile Include="Data\CoreInitData.cs" />
     <Compile Include="Data\MessageStatus.cs" />
     <Compile Include="Domains\MessageDomain.cs" />
     <Compile Include="Exceptions\IntegrationServerErrorException.cs" />
