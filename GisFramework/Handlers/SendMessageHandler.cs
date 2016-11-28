@@ -35,7 +35,7 @@ namespace GisFramework.Handlers
 		public void SendSuccess(TMessageDomain messageDomain, TAckProxy ackProxy)
 		{
 			messageDomain.Status = MessageStatus.Sent;
-			messageDomain.Sended = DateTime.Now;
+			messageDomain.SendedDate = DateTime.Now;
 			messageDomain.ResponseGuid = new Guid(ackProxy.MessageGUID);
 			_messageDomainService.Update(messageDomain);
 		}

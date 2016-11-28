@@ -69,7 +69,7 @@
     <Compile Include="Interfaces\Services\IGisLogger.cs" />
     <Compile Include="Interfaces\Services\IMessageDomainService.cs" />
     <Compile Include="Interfaces\Services\ISaveResultService.cs" />
-    <Compile Include="Interfaces\Services\ISenderIdService.cs" />
+    <Compile Include="Interfaces\Services\IOrgPPAGUIDService.cs" />
     <Compile Include="Interfaces\Services\ISourceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\GetResultProxyProviderBase.cs" />

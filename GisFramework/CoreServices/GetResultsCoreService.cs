@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using GisFramework.Data;
 using GisFramework.Domains;
@@ -28,8 +29,10 @@ namespace GisFramework.CoreServices
 		private readonly ISaveResultService<TResult, TMessageDomain> _saveResultService;
 		private readonly IGetResultMessageHandler<TMessageDomain, TResult> _getResultMessageHandler;
 		private readonly IGisLogger _logger;
-
-		private DateTime _startDateTime;
+		
+		/// <summary>
+		///  оличество дней, через которые считаетс€, что запрос не выполнитс€ никогда
+		/// </summary>
 		private const int GET_RESULT_TIMEOUT_IN_DAYS = 3;
 
 		public GetResultsCoreService(IMessageDomainService<TMessageDomain> messageDomainService,
@@ -50,7 +53,8 @@ namespace GisFramework.CoreServices
 
 		public void Do(CoreInitData coreInitData)
 		{
-			_startDateTime = DateTime.Now;
+			var stopWatch = new Stopwatch();
+			stopWatch.Start();
 			try
 			{
 				//получаем доменнные сообщени€ дл€ проверки результата обработки
@@ -76,8 +80,8 @@ namespace GisFramework.CoreServices
 						}
 						else
 						{
-							if (messageDomain.Sended.HasValue 
-								&& DateTime.Now.Subtract(messageDomain.Sended.Value).Days > GET_RESULT_TIMEOUT_IN_DAYS)
+							if (messageDomain.SendedDate.HasValue 
+								&& DateTime.Now.Subtract(messageDomain.SendedDate.Value).Days > GET_RESULT_TIMEOUT_IN_DAYS)
 							{
 								//в течение таймаута не можем получить результат обработки сообщени€, помечаем
 								_getResultMessageHandler.NoResultByTimeout(messageDomain);
@@ -95,12 +99,12 @@ namespace GisFramework.CoreServices
 						_getResultMessageHandler.Fail(messageDomain, exception);
 					}
 				}
-				var duration = DateTime.Now.Subtract(_startDateTime);
+				stopWatch.Stop();
 				_logger.Info(this.GetType(), $"ѕо {messages.Count} доменным сообщени€м ”  {coreInitData.UkId} получено " +
 							  $"{messages.Count(x => x.Status == MessageStatus.Done)} успешных ответов, " +
 							  $"{messages.Count(x => x.Status == MessageStatus.InProcess)} в обработке, " +
 							  $"{messages.Count(x => x.Status == MessageStatus.ResponseTakingError)} упали с ошибкой, " +
-							  $"{messages.Count(x => x.Status == MessageStatus.ResponseTakingErrorTryAgain)} будут отправлены повторно, за {duration}");
+							  $"{messages.Count(x => x.Status == MessageStatus.ResponseTakingErrorTryAgain)} будут отправлены повторно, за {stopWatch.Elapsed}");
 			}
 			catch (Exception ex)
 			{

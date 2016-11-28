@@ -12,7 +12,7 @@ namespace GisFramework.Interfaces.Services
 		where TMessageDomain : MessageDomain
 	{
 		/// <summary>
-		/// Сохранение созданных сообщений в БД
+		/// Сохранение созданных доменных сообщений в БД
 		/// </summary>
 		/// <param name="messageDomains"></param>
 		void InsertMessageDomains(List<TMessageDomain> messageDomains);

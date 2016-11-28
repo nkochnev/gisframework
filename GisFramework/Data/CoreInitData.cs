@@ -1,8 +1,7 @@
 ﻿namespace GisFramework.Data
 {
 	/// <summary>
-	/// Объект, котороый содержит данные для начала работы CoreService
-	/// Надо бы придумать другое название
+	/// Объект, котороый содержит данные для начала работы CoreService 
 	/// </summary>
 	public class CoreInitData
 	{
@@ -16,6 +15,9 @@
 			UkId = ukId;
 		}
 
+		/// <summary>
+		/// Идентификатор поставщика информации, по которому начинается взаимодействие
+		/// </summary>
 		public int UkId { get; set; }
 
 		public override string ToString()
